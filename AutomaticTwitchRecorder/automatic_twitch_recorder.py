@@ -14,7 +14,7 @@ class AutomaticTwitchRecorder:
     """
     def __init__(self, channel, output_dir, check_rate):
         self.channel = channel
-        self.output_dir = output_dir
+        self.output_dir = os.path.join(output_dir, '')
         self.check_rate = check_rate
 
     def check_if_online(self):
