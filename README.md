@@ -1,10 +1,10 @@
 # AutomaticTwitchRecorder
 
-Automatically checks if specified channel is streaming and uses youtube-dl to download the stream
+Automatically checks if specified channel is streaming and uses yt-dlp to download the stream
 
 ## Usage
 
-Make sure that you have `youtube-dl` installed
+Make sure that you have `yt-dlp` installed
 
 Run `python automatic_twitch_recorder.py <channelname>` to start the script
 
