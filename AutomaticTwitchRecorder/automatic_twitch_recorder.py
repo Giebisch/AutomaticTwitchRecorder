@@ -7,7 +7,8 @@ is streaming and automatically downloads the stream if possible
 import argparse
 import time
 import os
-import youtube_dl
+
+import yt_dlp
 
 class AutomaticTwitchRecorder:
     """ATR monitors a Twitch channel and downloads the stream
@@ -23,11 +24,11 @@ class AutomaticTwitchRecorder:
         Returns:
             [bool]: [1 if streaming, 0 else]
         """
-        ydl = youtube_dl.YoutubeDL()
+        ydl = yt_dlp.YoutubeDL()
         try:
             _ = ydl.extract_info(f"http://www.twitch.tv/{self.channel}", download=False)
             return 1
-        except (youtube_dl.utils.ExtractorError, youtube_dl.utils.DownloadError) as _:
+        except (yt_dlp.utils.ExtractorError, yt_dlp.utils.DownloadError) as _:
             return 0
 
     def start_loop(self):
@@ -46,7 +47,7 @@ class AutomaticTwitchRecorder:
                     'noplaylist': True,
                     'extract-audio': True,
                 }
-                with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([f"http://www.twitch.tv/{self.channel}"])
             else:
                 time.sleep(self.check_rate)
